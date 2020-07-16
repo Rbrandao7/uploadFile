@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const multiparty = require('multiparty')
 var serveStatic = require('serve-static')
 
-app.use(serveStatic('public/ftp', { 'index': ['default.html', 'default.htm'] }))
+app.use(serveStatic('t', { 'index': ['index.html', 'index.htm'] }))
 
 app.post('/api/uploadfile',(req,res)=>{
     const form = new multiparty.Form()

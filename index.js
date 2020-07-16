@@ -11,7 +11,7 @@ app.post('/api/uploadfile',(req,res)=>{
     form.parse(req,(err,fields,files)=>{
         if(err) return res.status(500).send({error:'erro ao subir arquivo'})
         console.log(files)
-        res.status(210)
+        res.status(210).send({sucess:'upload complete'})
     })
 })
 

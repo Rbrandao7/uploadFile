@@ -16,8 +16,15 @@ app.post('/api/uploadfile',(req,res)=>{
     const form = new multiparty.Form()
     form.parse(req, async (err,fields,files)=>{
         if(err) return res.status(500).send({error:'erro ao subir arquivo'})
-        console.log(files.['files[]'][0])
-        res.status(210).send({sucess:'upload complete'})
+        const image = files['files[]'][0];
+        const timeStamp = Date.now();
+        const dir = imgDir + '/' + timeStamp ;
+        const path = dir + '/' + image.originalFilename
+        fs.mkdirSync(dir)
+        fs.rename(image.path,path)
+
+        console.log()
+        res.status(210).send({sucess:'upload complete',urlImage:'http://ufile-com.umbler.net/img-upload/'+timeStamp+'/'+image.originalFilename})
     })
 })
 
